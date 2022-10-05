@@ -14,7 +14,7 @@ main()
 {
 	srand(time(NULL));
 	random_number = start + rand()%end;
-	printf("%d ile %d arasında rastgele sayı oluşturuluyor...\n", start, end);
+	printf("rastgele sayı oluşturuldu. %d-%d arasında\n", start, end);
 	printf("%d deneme hakkınız var\n", right);
 
 	for (int i = 1; i <= right; i++) {

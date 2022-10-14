@@ -2,9 +2,15 @@
 CC = cc
 
 PROG = sayi-tahmin
+OBJ = main.o
+
 all: $(PROG)
-$(PROG): main.c
-	$(CC) -std=c99 $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) main.c $(LDLIBS) -o $@
+$(PROG): $(OBJ)
+	$(CC) $(LDFLAGS) $(OBJ) -o $@ $(LDLIBS)
 
 clean:
-	rm -f $(PROG)
+	rm -f $(PROG) $(OBJ)
+
+.SUFFIXES: .c .o
+.c.o:
+	$(CC) -std=c99 $(CFLAGS) $(CPPFLAGS) -c $<

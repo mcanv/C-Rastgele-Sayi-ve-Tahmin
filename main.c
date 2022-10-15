@@ -1,38 +1,44 @@
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void main() {
-    int sayi,
-        tahmin,
-        baslangic = 1, 
-        bitis = 99, 
-        hak = 20;
-    srand(time(NULL));
-    printf("%d ile %d arasında bir sayı oluşturuluyor...\n", baslangic, bitis);
-    sayi = baslangic+rand()%bitis;
-    printf("Toplam %d hakkınız var\n", hak);
-    for(int i=1;i<=hak;i++) {
-        printf("Tahmin gir: ");
-        scanf("%d", &tahmin);
-        if(tahmin > bitis || tahmin < baslangic) {
-            printf("Girdiğiniz değer uygun bir sayı değil!\n");
-            break;
-        }
-        if(i == hak && tahmin != sayi) {
-            printf("Bulamadın! Sayı: %d", sayi);
-            break;
-        }
-        if(tahmin < sayi) {
-            printf("Daha büyük bir sayi girmelisin\n");
-        }
-        else if(tahmin > sayi) {
-            printf("Daha küçük bir sayı girmelisin\n");
-        }
-        else if(tahmin == sayi) {
-            printf("Bravo! %d. tahminde sonucu buldun. Sayı: %d", i, sayi);
-            break;
-        }
-    }
+const int start = 1;
+const int end = 99;
+const int right = 20;
+
+int random_number;
+int num;
+
+int
+main()
+{
+	srand(time(NULL));
+	random_number = start + rand()%end;
+	printf("rastgele sayı oluşturuldu. %d-%d arasında\n", start, end);
+	printf("%d deneme hakkınız var\n", right);
+
+	for (int i = 1; i <= right; i++) {
+		printf("tahmin gir: ");
+		scanf("%d", &num);
+
+		if (num > end || num < start) {
+			puts("girdiğiniz değer uygun bir sayı değil!");
+		        exit(EXIT_FAILURE);
+		}
+
+		if (num < random_number) {
+			puts("daha büyük bir sayı girmelisin");
+		} else if (num > random_number) {
+			puts("daha küçük bir sayı girmelisin");
+		} else {
+			printf("bravo! %d. tahminde sonucu buldun. sayı: %d\n",
+			       i, random_number);
+		        exit(EXIT_SUCCESS);
+		}
+
+		if (i == right) {
+			printf("bulamadın! sayı: %d\n", random_number);
+		        exit(EXIT_FAILURE);
+		}
+	}
 }
